@@ -90,7 +90,7 @@
 
 <style>
 .quality{
-	height:593px;
+	height:332px;
 	margin-left: 10px;
 }
 .quality img{
