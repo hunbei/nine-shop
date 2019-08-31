@@ -5,6 +5,10 @@
 </template>
 
 <style>
+*{
+   padding:0;
+   margin:0;
+}
    .app-container{
      padding-top:40px;
      padding-bottom:50px;

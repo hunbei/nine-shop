@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+	<link rel="stylesheet" href="css/index.css">
+	<link rel="stylesheet" href="css/reset.css">
+	<script src="../vue.js"></script>
+</head>
+<body>
+	<div id="main">
+		<div id="banner">
+			<div id="btn-left" @click="moveto(-1)"></div>
+			<ul id="ul-imgs" style="width:9500px;" :style="left" :class="transition" 
+			>
+				<li><a href="javascript:;"><img src="img/index/p1.png" alt="0"></a></li>
+				<li><a href="javascript:;"><img src="img/index/p2.png" alt="1"></a></li>
+				<li><a href="javascript:;"><img src="img/index/p3.png" alt="2"></a></li>
+				<li><a href="javascript:;"><img src="img/index/p4.png" alt="3"></a></li>
+				<li><a href="javascript:;"><img src="img/index/p5.png" alt="4"></a></li>
+				<li><a href="javascript:;"><img src="img/index/p6.png" alt="5"></a></li>
+				<li><a href="javascript:;"><img src="img/index/p1.png" alt="6"></a></li>
+			</ul>
+			<ul id="ul-idxs" @click="move1($event)">
+				<li :class="index==i+1?'active':''" v-for="index of 6" :key=index :alt=index></li>
+			</ul>
+			<div id="btn-right" @click="moveto(1)"></div>
+		</div>
+
+	</div>
+	<script>
+		var vm=new Vue({
+			el:"#main",
+			data:{
+				left:"margin-left:0px",
+				transition:"",
+				i:0, //当前图片下标，
+			},
+			methods:{
+				move,
+				moveto,
+				move1,
+			}
+		});
+		function move1(n){
+			if(n.target.nodeName=="LI"){
+			var li=n.target;
+				console.log(li.className);
+				console.dir(li);
+				move(li.getAttribute("alt")-1)
+			}else{
+			}
+		}
+		var liwidth=1350;//图片宽
+		var licount=6;//图片数量7，移动到最后一张的位移
+		var duration=500;//动画时间
+		var m_left=0;//视图移动距离
+		function move(n){// 参数n表示移动到第几张图片
+			if(n==undefined){
+				n=vm.i+1;
+			}
+			//调用一次方法，移动一次			
+			if(vm.i==0){
+				if(n>vm.i){
+					//看右边的图片，不会出问题
+					vm.transition="transition";
+				}
+				//在第一张图片时，可以看下一张的图片，但是看左边的图片会出问题，需要处理
+				//向左移动
+				else{
+					//偷梁换柱，将过渡属性去掉，将图片移动到最后一张
+					vm.transition="";
+					vm.left="margin-left:"+(-liwidth*licount)+"px"
+					
+					 //定时器是为了将偷梁换柱操作和加回transition属性的操作强行隔离开，设定定时器，无法隔离
+					setTimeout(function(){
+						move(licount-1)//然后加回过渡属性，移动到上一张,licount-1,
+					},100)
+					return;
+				}
+			}
+			vm.i=n;
+			m_left=-vm.i*liwidth;
+			vm.left="margin-left:"+m_left+"px";
+			if(vm.i==licount){//如果是最后一张图片，那就取消过渡，立即回到第一张图片上
+			//避免正在移动时取消过渡属性，添加定时器，在一个过渡时间过去后，再执行
+			console.log(vm.i+":"+licount)
+			setTimeout(function(){
+				vm.i=0;
+				vm.transition="";
+			vm.left="0px"
+			},duration);
+			}
+		}
+		//给左右箭头添加函数
+		function moveto(n){
+			//n大于0，向右移动,小于0就是向左
+			n=vm.i+n;
+			//用开关控制，上次动画没播放完无法播放下一次动画
+			var canClick=true;
+				move(n);
+				canClick=false;//执行轮播后，立刻关闭，禁止下一次移动
+				setTimeout(function(){
+					canClick=true;
+				},duration+100)		
+		}
+		//自动轮播,每次轮播间隔3秒
+		var timer=setTimeout(function(){
+			move()},1000);
+			//鼠标移入时，停止轮播，移出后继续轮播
+			var banner=document.getElementById("banner");
+		banner.onmouseover=function(){
+			clearInterval(timer)
+		};
+		banner.onmouseout=function(){
+			timer=setInterval(function(){
+				move()
+			},1000)
+		}
+		//点击指标移动到对应的图片
+
+	
+	</script>
+</body>
+</html>

@@ -1,0 +1,67 @@
+#main{
+	width:100%;
+	margin:0 auto;
+	overflow:hidden;
+}
+#banner{
+	width:1350px;
+	overflow:hidden;
+	position:relative;
+	margin:0 auto;
+}
+#ul-imgs{
+	overflow: hidden;
+	list-style:none;
+}
+#ul-imgs li{
+	overflow: hidden;
+	float: left;
+}
+#ul-imgs img{
+	width:1350px;
+}
+#btn-left,#btn-right{
+	width:60px;
+	height:100%;
+	position:absolute;
+	top:0;
+	background-repeat:no-repeat;
+	background-position:center;
+	cursor:pointer;
+}
+#ul-imgs.transition{
+	transition:all .5s linear;
+}
+#btn-left{
+	background-image:url(../img/left_ar.png);
+	left:20px;
+}
+#btn-right{
+	background-image: url(../img/right_ar.png);
+	right:20px;
+}
+#btn-left:hover,#btn-right:hover{
+	background-size:40px 70px
+}
+#ul-idxs{
+	list-style: none;
+	position:absolute;
+	width:120px;
+	margin:0 auto;
+	bottom: 25px;
+	left:50%;
+	margin-left:-60px;
+}
+
+#ul-idxs>li{
+
+	float:left;
+	width:10px;height: 10px;
+	background-color: #fff;
+	border-radius:50%;
+	margin:0 4px;
+	cursor: pointer;
+}
+#ul-idxs>li.active{
+	background-color: blue;
+}
