@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="container">
 		<!-- 轮播组件 -->
 		<div class="h_swipe">
 			<div class="swipe">
@@ -23,6 +23,8 @@
 				蕾姆
 			</li>
 		</ul>
+		<!-- 隔离带 -->
+		<div class="geli"></div>
 		<!-- 直播间导航】 -->
 		<div class="rec">
 			<img src="../../img/tab9.jpg" alt="">
@@ -31,11 +33,12 @@
 				<span class="rec_x">小沈阳直播</span>
 			</div>
 		</div>
+		<!-- 隔离带 -->
+		<div class="geli"></div>
 		<!-- swiper 广告横幅-->
 
 		<div class="quality">
-			<div>精品首发</div>
-      
+			<div class="title">精品首发<span>更多>></span></div>			
       <swiper :options="swiperOption">
         <swiper-slide><img src="../../img/01.jpg" alt=""></swiper-slide>
 				<swiper-slide><img src="../../img/02.jpg" alt=""></swiper-slide>
@@ -49,6 +52,30 @@
 				<swiper-slide><img src="../../img/05.jpg" alt=""></swiper-slide>
       </swiper>
 		</div>
+		<!-- 隔离带 -->
+		<div class="geli"></div>
+		<div class="quality">
+			<div class="title">精品首发<span>更多>></span></div>			
+      <swiper :options="swiperOption">
+        <swiper-slide><img src="../../img/01.jpg" alt=""></swiper-slide>
+				<swiper-slide><img src="../../img/02.jpg" alt=""></swiper-slide>
+				<swiper-slide><img src="../../img/03.jpg" alt=""></swiper-slide>
+				<swiper-slide><img src="../../img/04.jpg" alt=""></swiper-slide>
+				<swiper-slide><img src="../../img/05.jpg" alt=""></swiper-slide>
+				<swiper-slide><img src="../../img/01.jpg" alt=""></swiper-slide>
+				<swiper-slide><img src="../../img/02.jpg" alt=""></swiper-slide>
+				<swiper-slide><img src="../../img/03.jpg" alt=""></swiper-slide>
+				<swiper-slide><img src="../../img/04.jpg" alt=""></swiper-slide>
+				<swiper-slide><img src="../../img/05.jpg" alt=""></swiper-slide>
+      </swiper>
+		</div>
+		<!-- 隔离带 -->
+		<div class="geli"></div>
+		<!-- 秒杀专区 -->
+		<div class="quality">
+			<div class="title"> 秒杀专区</div>
+			<img src="../../img/05.jpg" alt="">
+		</div>
   </div>
 </template>
 <script>
@@ -61,6 +88,7 @@
           slidesPerView: 'auto',
           spaceBetween: 30,
 					freeMode: true,
+					width: 800, 
 					freeModeMinimumVelocity:0.3,
 					freeModeMomentumRatio:0.5,
           pagination: {
@@ -89,22 +117,47 @@
 </script>
 
 <style>
+
+
+
+
 .quality{
-	height:332px;
-	margin-left: 10px;
+	position:relative;
+	height:240px;
+}
+.title{
+	height:42px;
+	line-height: 42px;
+	text-align: center;
+	font-size:18px;
+	color:#c96323;
+}
+.title>span{
+	color:red;
+	position:absolute;
+	right:0px;
+	top: 0px;
 }
 .quality img{
+	position:relative;
+	left:10px;
 	height: 188px;
 	width:auto;
 	border-radius:5px;
 }
+.swiper-slide{
+	width:auto !important;
+}
 
 
 
-
-
+.geli{
+	margin: 2px 0;
+	height:10px;
+	background-image: linear-gradient(to bottom,#f6f6f6,#f2f1f7);
+}
 .rec{
-	width: 90%;height:120px;
+	width: 90%;height:auto;
 	position:relative;
 	margin:0 auto;
 }
@@ -171,8 +224,8 @@
   padding: 0 4px;
 }
 .mint-swipe-item img {
-  max-width: 100%;
-  height: auto;
+  width: auto;
+  height: 100%;
   margin: 0 auto;
   border-radius: 2px;
 }
