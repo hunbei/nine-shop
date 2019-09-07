@@ -1,5 +1,12 @@
 <template>
   <div class="container">
+		<!-- 搜索框 固定头部-->
+		<div class="search">
+			<div >			
+			<svg t="1567682221452" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2065" xmlns:xlink="http://www.w3.org/1999/xlink" width="25" height="25"><path d="M688.565345 653.900847c0 0-11.672854 15.440667-27.297716 30.575366l179.917696 176.300308 29.860075-27.91784L688.565345 653.900847 688.565345 653.900847zM752.457514 462.786135c0 175.017082-134.816498 306.400389-301.919331 306.400389C276.296767 766.655887 149.950174 629.448946 149.950174 463.021495c0-160.758334 135.995347-296.318776 300.588009-296.318776C617.641015 166.70272 752.457514 304.025295 752.457514 462.786135L752.457514 462.786135zM449.439152 206.867488c-143.231145 0-259.32421 116.181069-259.32421 261.075087 0 144.898111 116.093065 261.882476 259.32421 261.882476 143.250588 0 262.8495-116.984365 262.8495-261.882476C712.288652 323.048557 592.68974 206.867488 449.439152 206.867488L449.439152 206.867488zM449.439152 206.867488" p-id="2066" fill="#3d3d3d"></path></svg>搜索
+		 </div>
+		</div>
+
 		<!-- 轮播组件 -->
 		<div class="h_swipe">
 			<div class="swipe">
@@ -36,7 +43,6 @@
 		<!-- 隔离带 -->
 		<div class="geli"></div>
 		<!-- swiper 广告横幅-->
-
 		<div class="quality">
 			<div class="title">精品首发<span>更多>></span></div>			
       <swiper :options="swiperOption">
@@ -76,10 +82,21 @@
 			<div class="title"> 秒杀专区</div>
 			<img src="../../img/05.jpg" alt="">
 		</div>
+		<products :products="products" :title="'秒杀专区'"></products>
+		<products :products="products" :title="'限量购专区'"></products>
+		<products :products="products" :title="'第二件半价'"></products>	
+					
   </div>
 </template>
 <script>
+//引入子组件
+	import products from "./common/products.vue"
+
 	export default{
+		//注册子组件
+		components:{
+			products:products,
+		},
 		data(){
 			return{
 				startX:"",
@@ -95,7 +112,15 @@
             el: '.swiper-pagination',
             clickable: true
 					}
-				}
+				},
+			products:[
+			{id:1,intro:"【现货速发】Apple/苹果 iPhone XR",img:"p0.jpg",price:99.00},
+			{id:2,intro:"【现货速发】Apple/苹果 iPhone XR",img:"p1.jpg",price:99.00},
+			{id:3,intro:"【现货速发】Apple/苹果 iPhone XR",img:"p2.jpg",price:99.00},
+			{id:4,intro:"【现货速发】Apple/苹果 iPhone XR",img:"p3.jpg",price:99.00},
+			{id:5,intro:"【现货速发】Apple/苹果 iPhone XR",img:"p5.jpg",price:99.00},
+			{id:6,intro:"【现货速发】Apple/苹果 iPhone XR",img:"p4.jpg",price:99.00},
+			],
 			}
 		},
 
@@ -117,10 +142,32 @@
 </script>
 
 <style>
+/* 背景颜色 */
+.container{
+	background:#fff;
+}
+
+.search{
+	width:100%;
+	position: fixed;
+	z-index: 999;
+	padding: 5px 0;
+	background: #fff;
+	opacity: 1;
+	top: 0px;
+}
+.search div{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width:60%;
+	background: #ededed;
+	margin: 0 auto;
+	border-radius: 3px;
+}
 
 
-
-
+/* 广告横幅 */
 .quality{
 	position:relative;
 	height:240px;
@@ -217,7 +264,10 @@
 }
 
 
-/* 轮播微调 */
+/* 头部轮播微调 */
+.h_swipe{
+	margin-top:35px;
+}
 .swipe {
   height: 188px;
   margin: 0 auto;
