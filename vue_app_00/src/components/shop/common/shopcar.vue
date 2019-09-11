@@ -183,9 +183,9 @@
 		data(){
 			return{
 				lists:[
-					{sum:1,cb:true,price:338.00},	
+					{sum:2,cb:true,price:338.00},	
 					{sum:1,cb:false,price:3328.00},	
-					{sum:1,cb:false,price:118.00},	
+					{sum:3,cb:false,price:118.00},	
 					{sum:1,cb:true,price:3348.00},
 						
 				],
@@ -202,13 +202,13 @@
 	//增删数量
 	function change(e){
 		if(e.target.innerHTML=="-"){
-			if(this.list[0].sum==1){
+			if(this.lists[0].sum==1){
 				this.$toast("减不动啦")
 			}else{
-			this.list[0].sum--
+			this.lists[0].sum--
 			}
 		}else if(e.target.innerHTML=="+"){
-			this.list[0].sum++;
+			this.lists[0].sum++;
 		}
 	}
 	// 选中购买

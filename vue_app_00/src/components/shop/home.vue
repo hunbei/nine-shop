@@ -10,7 +10,7 @@
 		<!-- 轮播组件 -->
 		<div class="h_swipe">
 			<div class="swipe">
-				<mt-swipe :auto="4000" :continuous="false">
+				<mt-swipe :auto="4000" >
 					<mt-swipe-item>
 						<img src="../../img/01.jpg" alt />
 					</mt-swipe-item>
@@ -99,8 +99,6 @@
 		},
 		data(){
 			return{
-				startX:"",
-				endX:"",
 				swiperOption: {
           slidesPerView: 'auto',
           spaceBetween: 30,
