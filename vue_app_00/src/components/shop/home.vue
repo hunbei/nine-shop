@@ -1,4 +1,5 @@
 <template>
+<!-- 主页home -->
   <div class="container">
 		<!-- 搜索框 固定头部-->
 		<div class="search">
@@ -8,21 +9,7 @@
 		</div>
 
 		<!-- 轮播组件 -->
-		<div class="h_swipe">
-			<div class="swipe">
-				<mt-swipe :auto="4000" >
-					<mt-swipe-item>
-						<img src="../../img/01.jpg" alt />
-					</mt-swipe-item>
-					<mt-swipe-item>
-						<img src="../../img/02.jpg" alt />
-					</mt-swipe-item>
-					<mt-swipe-item>
-						<img src="../../img/03.jpg" alt />
-					</mt-swipe-item>
-				</mt-swipe>
-			</div>
-		</div>
+		<headrswipe></headrswipe>
 		<!-- 商品导航 -->
 		<ul class="nav">
 			<li class="nav-item" v-for="i of 8" :key="i">
@@ -61,7 +48,7 @@
 		<!-- 隔离带 -->
 		<div class="geli"></div>
 		<div class="quality">
-			<div class="title">精品首发<span>更多>></span></div>			
+			<div class="title">剁手灵感<span>更多>></span></div>	
       <swiper :options="swiperOption">
         <swiper-slide><img src="../../img/01.jpg" alt=""></swiper-slide>
 				<swiper-slide><img src="../../img/02.jpg" alt=""></swiper-slide>
@@ -91,11 +78,12 @@
 <script>
 //引入子组件
 	import products from "./common/products.vue"
-
+	import headrswipe from './common/headr_swipe.vue'
 	export default{
 		//注册子组件
 		components:{
 			products:products,
+		headrswipe:headrswipe,
 		},
 		data(){
 			return{
@@ -143,6 +131,7 @@
 /* 背景颜色 */
 .container{
 	background:#fff;
+	padding:0 5px;
 }
 
 .search{
@@ -185,7 +174,6 @@
 }
 .quality img{
 	position:relative;
-	left:10px;
 	height: 188px;
 	width:auto;
 	border-radius:5px;
@@ -262,24 +250,6 @@
 }
 
 
-/* 头部轮播微调 */
-.h_swipe{
-	margin-top:35px;
-}
-.swipe {
-  height: 188px;
-  margin: 0 auto;
-  padding: 0 4px;
-}
-.mint-swipe-item img {
-  width: auto;
-  height: 100%;
-  margin: 0 auto;
-  border-radius: 2px;
-}
-.mint-swipe-indicator.is-active {
-  background: rgb(240, 6, 142) !important;
-}
 
 
 </style>

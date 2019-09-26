@@ -15,6 +15,24 @@ import swiper from 'vue-awesome-swiper'
 import 'swiper/dist/css/swiper.css'
 //注册swiper
 Vue.use(swiper, /* { default global options } */)
+// 使用vant商品导航组件
+import {
+  GoodsAction,
+  GoodsActionIcon,
+  GoodsActionButton,
+  SubmitBar,
+  CouponCell,
+   CouponList
+} from 'vant';
+import 'vant/lib/index.css';
+
+Vue
+  .use(GoodsAction)
+  .use(GoodsActionIcon)
+  .use(GoodsActionButton)
+  .use(SubmitBar)
+  .use(CouponCell)
+  .use(CouponList);
 
 import './lib/mui/css/icons-extra.css'
 import "./font/iconfont.css"

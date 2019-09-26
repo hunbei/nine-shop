@@ -1,4 +1,6 @@
+
 <template>
+<!-- // 商品专区 -->
 	<div class="products">
 		<div class="img_title">
 			{{title}}
@@ -19,9 +21,11 @@
 	.img_title{
 		margin:10px 0;
 		height: 240px;
+		padding: 0 5px;
 		text-align:center;
 		color:#c96323;
 		font-size:16px
+
 	}
 	.img_title_img{
 		margin:10px 0;
