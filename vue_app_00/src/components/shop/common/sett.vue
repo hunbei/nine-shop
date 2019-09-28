@@ -4,7 +4,7 @@
   <div id="sett">
     <!-- 顶部导航返回按钮 -->
     <div class="detail_titel">
-      <i></i>
+      <i @click="fanhui"></i>
       订单结算
     </div>
     <!-- 个人信息 -->
@@ -40,7 +40,22 @@
 			</div>
 			<!-- 订单汇总 -->
 			<div class="sum">
-				<div class="sum_bar"> </div>
+				<div class="sum_bar">
+          <p>商品金额</p> 
+          <p>￥{{}}2454.00</p>
+        </div>
+				<div class="sum_bar">
+          <p>运费</p> 
+          <p>￥{{}}2454.00</p>
+        </div>
+				<div class="sum_bar">
+          <p>优惠</p> 
+          <p>-￥{{}}2454.00</p>
+        </div>
+				<div class="sum_bar">
+          <p>总金额： </p> 
+          <p>￥{{}}2454.00</p>
+        </div>               
 			</div>
 
     </div>
@@ -52,13 +67,12 @@
 #sett .shop {
   padding: 10px;
   font-size: 14px;
-  background: #000;
-  /* background-image: linear-gradient(to bottom,#f6f6f6,#f2f1f7); */
+  background-image: linear-gradient(to bottom,#f6f6f6,#f2f1f7);
   margin-bottom: 50px;
 }
 /* 头部导航 */
 .detail_titel {
-  height: 35px;
+  height: 50px;
   width: 100%;
   font-size: 18px;
   display: flex;
@@ -162,7 +176,24 @@
 	border: none;
 
 }
-
+/* 汇总 */
+#sett .sum{
+position: relative;
+}
+#sett .sum_bar{
+  background: #fff;
+  border-radius: 2px;
+  padding: .5rem;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1px;
+}
+#sett .sum .sum_bar:last-child{
+  justify-content: flex-end;
+}
+#sett .sum_bar p+p{
+  color: #c96323;
+}
 
 /* 底部支付微调 */
 .van-submit-bar__bar {
@@ -179,3 +210,20 @@
   border: none;
 }
 </style>
+<script>
+  export default {
+    data(){
+      return{
+
+      }
+    },
+    methods: {
+      onSubmit(){
+
+      },
+      fanhui(){
+        this.$router.go(-1)
+      }
+    },
+  }
+</script>

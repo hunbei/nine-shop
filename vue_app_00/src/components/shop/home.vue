@@ -1,56 +1,121 @@
 <template>
 <!-- 主页home -->
-  <div class="container">
+  <div class="container" id='home'>
 		<!-- 搜索框 固定头部-->
-		<div class="search">
+		<router-link to="/search">	<div class="search" >
 			<div >			
 			<svg t="1567682221452" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2065" xmlns:xlink="http://www.w3.org/1999/xlink" width="25" height="25"><path d="M688.565345 653.900847c0 0-11.672854 15.440667-27.297716 30.575366l179.917696 176.300308 29.860075-27.91784L688.565345 653.900847 688.565345 653.900847zM752.457514 462.786135c0 175.017082-134.816498 306.400389-301.919331 306.400389C276.296767 766.655887 149.950174 629.448946 149.950174 463.021495c0-160.758334 135.995347-296.318776 300.588009-296.318776C617.641015 166.70272 752.457514 304.025295 752.457514 462.786135L752.457514 462.786135zM449.439152 206.867488c-143.231145 0-259.32421 116.181069-259.32421 261.075087 0 144.898111 116.093065 261.882476 259.32421 261.882476 143.250588 0 262.8495-116.984365 262.8495-261.882476C712.288652 323.048557 592.68974 206.867488 449.439152 206.867488L449.439152 206.867488zM449.439152 206.867488" p-id="2066" fill="#3d3d3d"></path></svg>搜索
 		 </div>
-		</div>
+		</div></router-link>
+
 
 		<!-- 轮播组件 -->
 		<headrswipe></headrswipe>
 		<!-- 商品导航 -->
 		<ul class="nav">
-			<li class="nav-item" v-for="i of 8" :key="i">
-				<img src="../../img/tab1.jpg" alt="">
+			<li class="nav-item">
+				<img src="../../img/products/p10.png" alt="">
 				蕾姆
 			</li>
+			<li class="nav-item">
+				<img src="../../img/products/p20.png" alt="">
+				蕾姆
+			</li>
+			<li class="nav-item">
+				<img src="../../img/products/p30.png" alt="">
+				蕾姆
+			</li>
+			<li class="nav-item">
+				<img src="../../img/products/p40.png" alt="">
+				蕾姆
+			</li>
+			<li class="nav-item">
+				<img src="../../img/products/p50.png" alt="">
+				蕾姆
+			</li>
+			<li class="nav-item">
+				<img src="../../img/products/p60.png" alt="">
+				蕾姆
+			</li>
+			<li class="nav-item">
+				<img src="../../img/products/p70.png" alt="">
+				蕾姆
+			</li>
+			<li class="nav-item">
+				<img src="../../img/products/p80.png" alt="">
+				蕾姆
+			</li>
+
 		</ul>
 		<!-- 隔离带 -->
-		<div class="geli"></div>
-		<!-- 直播间导航】 -->
+		 <!-- <div class="geli"></div>
+
 		<div class="rec">
 			<img src="../../img/tab9.jpg" alt="">
 			<div class="rec_item">
 				<i class="rec_i">直播</i>
 				<span class="rec_x">小沈阳直播</span>
 			</div>
-		</div>
+		</div> -->
 		<!-- 隔离带 -->
 		<div class="geli"></div>
 		<!-- swiper 广告横幅-->
 		<div class="quality">
-			<div class="title">精品首发<span>更多>></span></div>			
-      <swiper :options="swiperOption">
-        <swiper-slide><img src="../../img/01.jpg" alt=""></swiper-slide>
-				<swiper-slide><img src="../../img/02.jpg" alt=""></swiper-slide>
-				<swiper-slide><img src="../../img/03.jpg" alt=""></swiper-slide>
-				<swiper-slide><img src="../../img/04.jpg" alt=""></swiper-slide>
-				<swiper-slide><img src="../../img/05.jpg" alt=""></swiper-slide>
-				<swiper-slide><img src="../../img/01.jpg" alt=""></swiper-slide>
-				<swiper-slide><img src="../../img/02.jpg" alt=""></swiper-slide>
-				<swiper-slide><img src="../../img/03.jpg" alt=""></swiper-slide>
-				<swiper-slide><img src="../../img/04.jpg" alt=""></swiper-slide>
-				<swiper-slide><img src="../../img/05.jpg" alt=""></swiper-slide>
+			<div class="title">精品首发</div>			
+      <swiper :options="swiperOption">		
+        <swiper-slide>
+					<router-link to="/detail/10">
+					<img src="../../img/products/d20.jpg" alt="">
+					</router-link>
+				</swiper-slide>
+        <swiper-slide>
+					<router-link to="/detail/19">
+					<img src="../../img/products/s26.jpg" alt="">
+					</router-link>
+				</swiper-slide>
+        <swiper-slide>
+					<router-link to="/detail/16">
+					<img src="../../img/products/s18.jpg" alt="">
+					</router-link>
+				</swiper-slide>
+        <swiper-slide>
+					<router-link to="/detail/15">
+					<img src="../../img/products/s15.jpg" alt="">
+					</router-link>
+				</swiper-slide>
+        <swiper-slide>
+					<router-link to="/detail/11">
+					<img src="../../img/products/d23.jpg" alt="">
+					</router-link>
+				</swiper-slide>
+        <swiper-slide>
+					<router-link to="/detail/20">
+					<img src="../../img/products/s28.jpg" alt="">
+					</router-link>
+				</swiper-slide>
+        <swiper-slide>
+					<router-link to="/detail/6">
+					<img src="../../img/products/d8.jpg" alt="">
+					</router-link>
+				</swiper-slide>
+					<swiper-slide>
+
+					<img src="" alt="" width="100">
+
+				</swiper-slide>																							
       </swiper>
 		</div>
 		<!-- 隔离带 -->
 		<div class="geli"></div>
 		<div class="quality">
-			<div class="title">剁手灵感<span>更多>></span></div>	
+			<div class="title">剁手灵感</div>	
       <swiper :options="swiperOption">
-        <swiper-slide><img src="../../img/01.jpg" alt=""></swiper-slide>
+        <swiper-slide>
+					<router-link to="/detail">
+					<img src="../../img/01.jpg" alt="">
+					</router-link>
+					
+					</swiper-slide>
 				<swiper-slide><img src="../../img/02.jpg" alt=""></swiper-slide>
 				<swiper-slide><img src="../../img/03.jpg" alt=""></swiper-slide>
 				<swiper-slide><img src="../../img/04.jpg" alt=""></swiper-slide>
@@ -65,10 +130,6 @@
 		<!-- 隔离带 -->
 		<div class="geli"></div>
 		<!-- 秒杀专区 -->
-		<div class="quality">
-			<div class="title"> 秒杀专区</div>
-			<img src="../../img/05.jpg" alt="">
-		</div>
 		<products :products="products" :title="'秒杀专区'"></products>
 		<products :products="products" :title="'限量购专区'"></products>
 		<products :products="products" :title="'第二件半价'"></products>	
@@ -79,19 +140,21 @@
 //引入子组件
 	import products from "./common/products.vue"
 	import headrswipe from './common/headr_swipe.vue'
+	import search from './common/search.vue'
 	export default{
 		//注册子组件
 		components:{
 			products:products,
-		headrswipe:headrswipe,
+			headrswipe:headrswipe,
+			search,
 		},
 		data(){
 			return{
 				swiperOption: {
           slidesPerView: 'auto',
-          spaceBetween: 30,
+          spaceBetween: 15,
 					freeMode: true,
-					width: 800, 
+					width: 370, 
 					freeModeMinimumVelocity:0.3,
 					freeModeMomentumRatio:0.5,
           pagination: {
@@ -99,17 +162,16 @@
             clickable: true
 					}
 				},
-			products:[
-			{id:1,intro:"【现货速发】Apple/苹果 iPhone XR",img:"p0.jpg",price:99.00},
-			{id:2,intro:"【现货速发】Apple/苹果 iPhone XR",img:"p1.jpg",price:99.00},
-			{id:3,intro:"【现货速发】Apple/苹果 iPhone XR",img:"p2.jpg",price:99.00},
-			{id:4,intro:"【现货速发】Apple/苹果 iPhone XR",img:"p3.jpg",price:99.00},
-			{id:5,intro:"【现货速发】Apple/苹果 iPhone XR",img:"p5.jpg",price:99.00},
-			{id:6,intro:"【现货速发】Apple/苹果 iPhone XR",img:"p4.jpg",price:99.00},
-			],
+				products:[
+				{id:1,intro:"【现货速发】Apple/苹果 iPhone XR",img:"p0.jpg",price:99.00},
+				{id:2,intro:"【现货速发】Apple/苹果 iPhone XR",img:"p1.jpg",price:99.00},
+				{id:3,intro:"【现货速发】Apple/苹果 iPhone XR",img:"p2.jpg",price:99.00},
+				{id:4,intro:"【现货速发】Apple/苹果 iPhone XR",img:"p3.jpg",price:99.00},
+				{id:5,intro:"【现货速发】Apple/苹果 iPhone XR",img:"p5.jpg",price:99.00},
+				{id:6,intro:"【现货速发】Apple/苹果 iPhone XR",img:"p4.jpg",price:99.00},
+				],
 			}
 		},
-
 		methods:{
 			TStart(e){
 				this.startPoint = e.touches[0].pageY;
@@ -220,9 +282,6 @@
 }
 
 
-
-
-
 /* 导航 */
 .nav{
 	display: flex;
@@ -243,12 +302,16 @@
 }
 .nav-item img{
 	display: block;
-    max-width: 25%;
-    height: auto;
-		margin: 10px auto;
-
+  max-width: 40%;
+   height: auto;
+	margin: 10px auto;
 }
-
+#home{
+	margin-bottom: 55px;
+}
+#home .search{
+	color: #000;
+}
 
 
 

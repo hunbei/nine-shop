@@ -21,11 +21,11 @@
 		<mt-tab-container v-model="selected">
 			<!-- 主页 -->
 			<mt-tab-container-item id="home">
-				<div class="te"></div>
+				<home></home>
 			</mt-tab-container-item>
 			<!-- 订单页 -->
 			<mt-tab-container-item id="order">
-222
+				<orderlist></orderlist>
 			</mt-tab-container-item>
 			<!-- 购物车 -->
 			<mt-tab-container-item id="car">
@@ -33,18 +33,25 @@
 			</mt-tab-container-item>
 			<!-- 用户页 -->
 			<mt-tab-container-item id="me">
-444
+				<user></user>
 			</mt-tab-container-item>
 		</mt-tab-container>
 	</div>
 </template>
 <script>
-//引入购物车组件
+//引入组件
 import shopcar from './common/shopcar'
+import home from './home'
+import orderlist from './common/orderlist'
+import user from './common/user'
+
 	export default{
 		// 注册子组件
 		components:{
 			shopcar:shopcar,
+			home,
+			orderlist,
+			user,
 		},
 		data(){
 			return{

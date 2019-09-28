@@ -7,17 +7,17 @@
 				<mt-swipe :auto="4000" >
 					<mt-swipe-item>
 						<router-link to="/detail">
-						<img src="../../../img/01.jpg" alt />
+						<img src="../../../img/products/h1.jpg" alt />
 						</router-link>
 					</mt-swipe-item>
 					<mt-swipe-item>
 						<router-link to="/detail">
-						<img src="../../../img/02.jpg" alt />
+						<img src="../../../img//products/h2.jpg" alt />
 						</router-link>
 					</mt-swipe-item>
 					<mt-swipe-item>
 						<router-link to="/detail">
-						<img src="../../../img/03.jpg" alt />
+						<img src="../../../img//products/h3.jpg" alt />
 						</router-link>
 					</mt-swipe-item>
 				</mt-swipe>

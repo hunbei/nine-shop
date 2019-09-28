@@ -22,7 +22,8 @@ import {
   GoodsActionButton,
   SubmitBar,
   CouponCell,
-   CouponList
+   CouponList,
+   Search,AddressList,
 } from 'vant';
 import 'vant/lib/index.css';
 
@@ -32,11 +33,21 @@ Vue
   .use(GoodsActionButton)
   .use(SubmitBar)
   .use(CouponCell)
-  .use(CouponList);
+  .use(Search)
+  .use(CouponList)
+  .use(AddressList);
 
 import './lib/mui/css/icons-extra.css'
 import "./font/iconfont.css"
-
+// Vue.config.productionTip = false;
+// 引入axios
+import axios from 'axios'
+// 配置请求时保存session
+axios.defaults.withcredentials=true;
+// 基础路径
+axios.defaults.baseURL="http://127.0.0.1:8080/"
+// 注册组件
+Vue.prototype.axios=axios;
 new Vue({
   router,
   render: h => h(App)

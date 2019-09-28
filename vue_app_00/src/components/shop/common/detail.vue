@@ -3,19 +3,27 @@
   <div id="detail">
     <!-- 返回按钮 -->
     <div class="detail_titel">
-      <i></i>
+      <i @click="fanhui"></i>
       商品详情
     </div>
     <!-- 商品详情卡片 -->
     <div class="item_card">
       <!-- 轮播组件 -->
-      <headrswipe></headrswipe>
+      		<div class="h_swipe">
+			<div class="swipe">
+				<mt-swipe :auto="4000" >
+					<mt-swipe-item v-for="(item,i) in imgs " :key='i'>
+						<img :src='require(`../../../img/products/${imgs[i]}.jpg`)' alt />
+					</mt-swipe-item>
+				</mt-swipe>
+			</div>
+		</div>
       <!-- 商品详情 -->
-      <p>{{}}详情打法撒旦法的说法啥打法上第三方伽三顿饭·1的说法啥打法上打发发送到发斯蒂芬打法撒旦法时候</p>
+      <p>{{detail.detail}}</p>
       <!-- 商品介绍 -->
-      <p>{{}}介绍发送到发斯蒂芬打法撒旦法</p>
+      <p>{{detail.info}} </p>
       <!-- 价格 -->
-      <p class="price">价格{{}}</p>
+      <p class="price">￥{{detail.price.toFixed(2)}}</p>
     </div>
     <!-- 购物篮 -->
     <div class="basket">
@@ -49,9 +57,7 @@
     <!-- 商品详情参数图片 -->
     <div class="detail_img">
       <p>商品详情</p>
-      <img src="../../../img/p5.jpg" alt />
-      <img src="../../../img/p5.jpg" alt />
-      <img src="../../../img/p5.jpg" alt />
+      <img v-for="(item,i) in imgs " :key='i' :src='require(`../../../img/products/${imgs[i]}.jpg`)' alt />
     </div>
     <!-- 底部导航条 -->
     <van-goods-action>
@@ -65,10 +71,34 @@
     </van-goods-action>
   </div>
 </template>
-<style>
+<style scoped>
+.h_swipe{
+	margin-top:35px;
+}
+/* 轮播高度 */
+.h_swipe .swipe {
+  height: 188px;
+  margin: 0 auto;
+}
+/* 超出的图片部分隐藏 */
+.h_swipe .mint-swipe-item{
+		overflow: hidden;
+}
+/* 图片大小 */
+.h_swipe .mint-swipe-item img {
+  width: auto;
+  height: 100%;
+  margin: 0 auto;
+  border-radius: 2px;
+}
+/* 指示器颜色样式 */
+.h_swipe .mint-swipe-indicator.is-active {
+  background: rgb(240, 6, 142) !important;
+}
+
 /* 详情页头部标题 */
 .detail_titel {
-  height: 35px;
+  height: 40px;
   width: 100%;
   display: flex;
   align-items: center;
@@ -89,6 +119,7 @@
 .item_card > p:nth-child(2) {
   color: #000;
   text-indent: 1rem;
+  margin:5px 0;
 }
 /* 商品介绍 */
 .item_card > p:nth-child(3) {
@@ -135,6 +166,7 @@
   font-style: normal;
   border-radius: 2px;
   margin: 2px;
+  padding: 0 2px;
 }
 /*购物篮 下部 */
 .basket .b_down {
@@ -174,12 +206,18 @@
 // 导入头部轮播组件
 import headrswipe from "./headr_swipe";
 export default {
+  created() {
+    this.loading();
+  },
   components: {
     headrswipe
   },
+  props:['pid'],
   data() {
     return {
-      sum: 1
+      sum: 1,
+      detail:{},
+      imgs:[],
     };
   },
   methods: {
@@ -193,6 +231,26 @@ export default {
       } else if (e.target.innerHTML == "+") {
         this.sum++;
       }
+    },
+    // 返回
+    fanhui(){
+      this.$router.go(-1)
+    },
+    loading(){
+       // 路径url
+    var url="detail";
+     // 传入商品pid参数
+      var pid={pid:this.pid};
+      console.log(pid);
+       this.axios.get(url,{params:pid})
+       .then(res=>{
+         console.log(res.data.data[0])
+         this.detail=res.data.data[0];
+          // var imgs=JSON.parse(this.detail);
+          // this.imgs=imgs.split(',');
+          this.imgs=this.detail.imgs.split(',');
+         
+       })
     }
   }
 };

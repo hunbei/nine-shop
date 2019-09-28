@@ -13,7 +13,7 @@
         <input type="checkbox" @click="select" v-model="item.cb" :data-key='i'/>
       </div>
       <div class="item_right">
-        <img src="../../../img/p5.jpg" alt />
+       <img src="../../../img/p5.jpg" alt @click="goDetail"/>
         <div class="item_intro">
           <p>房间爱丽丝都是块级发送到立刻发牢骚的水立方看见爱上了</p>
           <div>
@@ -39,7 +39,8 @@
       <div class="sem_right" v-if="isdels"> 
         合计:
         <span>￥{{total.toFixed(2)}}</span>
-        <button>结算{{sum}}</button>
+        <!-- 跳转结算页面 -->
+       <router-link to="/sett"> <button>结算{{sum}}</button></router-link>
       </div>
 			<!-- 删除多个 -->
 			<div class="sem_right" v-else ><button @click='delOrd(1)'>删除</button></div>
@@ -297,7 +298,11 @@ export default {
 					this.isdel=false;
 				}
 			}
-		}
+    },
+    //跳转详情页面
+    goDetail(){
+      this.$router.push('/detail')
+    }
 
 	},
 	computed: {
