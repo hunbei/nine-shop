@@ -52,7 +52,8 @@
           极速退款
         </div>
       </div>
-    </div>
+    </div>=
+    
 
     <!-- 商品详情参数图片 -->
     <div class="detail_img">
