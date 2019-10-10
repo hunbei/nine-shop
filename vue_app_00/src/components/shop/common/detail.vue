@@ -23,7 +23,7 @@
       <!-- 商品介绍 -->
       <p>{{detail.info}} </p>
       <!-- 价格 -->
-      <p class="price">￥{{detail.price.toFixed(2)}}</p>
+      <p class="price">￥{{parseInt(detail.price).toFixed(2)}}</p>
     </div>
     <!-- 购物篮 -->
     <div class="basket">
@@ -62,13 +62,13 @@
     </div>
     <!-- 底部导航条 -->
     <van-goods-action>
-    <van-goods-action-icon icon="wap-home-o" text="返回首页" to="home"/>
+    <van-goods-action-icon icon="wap-home-o" text="返回首页" to="/main"/>
 
 		 
       <van-goods-action-icon icon="cart-o" text="购物车" info="5" to="/shopcar"/>
 			
-      <van-goods-action-button type="warning" text="加入购物车" />
-      <van-goods-action-button type="danger" text="立即购买" />
+      <van-goods-action-button type="warning" text="加入购物车" @click="addshop"/>
+      <van-goods-action-button type="danger" text="立即购买" to="/sett"/>
     </van-goods-action>
   </div>
 </template>
@@ -252,6 +252,22 @@ export default {
           this.imgs=this.detail.imgs.split(',');
          
        })
+    },
+    addshop(){
+      // 添加购物车
+      // 获取商品id
+      var shop ={cb:false,sum:this.sum,proid:this.detail.pid,};
+      var url='shopcar/add';
+      this.axios.get(url,{params:{shop}})
+      .then(res=>{
+        if(res.data.code==1){
+          this.$toast('添加成功')
+        }else{
+          this.$toast(res.data.data);
+        }
+      })
+
+
     }
   }
 };

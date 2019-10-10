@@ -29,7 +29,7 @@
 			</mt-tab-container-item>
 			<!-- 购物车 -->
 			<mt-tab-container-item id="car">
-				<shopcar></shopcar>
+				<shopcar :shopcars='shopcars'></shopcar>
 			</mt-tab-container-item>
 			<!-- 用户页 -->
 			<mt-tab-container-item id="me">
@@ -55,9 +55,49 @@ import user from './common/user'
 		},
 		data(){
 			return{
-				selected:'home'
+				selected:'home',
+				shopcars:[],
 			}
+		},
+		methods: {
+		// 获取用户购物车
+    getshops(){
+      var url='shopcar';
+      this.axios.get(url)
+      .then(res=>{
+        if(res.data.code==-1){//未登录
+          this.$toast("请先登录")
+        }else{
+					this.shopcars=res.data.data;
+					this.shopcars.forEach(value => {				
+					value.cb=value.cb==0?false:true;
+					});
+					
+        }
+      })
+		},
+		updateshops(){
+			var url='shopcar/update';
+			console.log(this.shopcars)
+			this.axios.get(url,{params:{shopcars:this.shopcars}})
+			.then(res=>{
+			})
 		}
+		},
+		created() {
+			this.selected=this.$store.getters.getSelected;
+		},
+		watch: {
+			selected(){
+				this.$store.commit('updateSelected',this.selected);
+				if(this.selected=='car'){
+					this.getshops();
+				}else{
+					this.updateshops();
+				}
+			},
+
+		},
 	}
 
 

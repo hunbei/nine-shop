@@ -6,17 +6,17 @@
 			<div class="swipe">
 				<mt-swipe :auto="4000" >
 					<mt-swipe-item>
-						<router-link to="/detail">
+						<router-link to="/detail/45">
 						<img src="../../../img/products/h1.jpg" alt />
 						</router-link>
 					</mt-swipe-item>
 					<mt-swipe-item>
-						<router-link to="/detail">
+						<router-link to="/detail/33">
 						<img src="../../../img//products/h2.jpg" alt />
 						</router-link>
 					</mt-swipe-item>
 					<mt-swipe-item>
-						<router-link to="/detail">
+						<router-link to="/detail/49">
 						<img src="../../../img//products/h3.jpg" alt />
 						</router-link>
 					</mt-swipe-item>

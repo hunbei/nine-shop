@@ -11,19 +11,19 @@
     <div class="shop">
       <div class="user">
         <div class="up">
-          <p>名字&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{}}</p>
+          <p>名字&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; qq</p>
           <i></i>
         </div>
-        <p>sdfasdfasdfasdf</p>
+        <p>'浙江省杭州市西湖区文三路 138 号东方通信大厦 7 楼 501 室</p>
       </div>
       <div class="ordLists">
-        <div class="card" v-for="i of 10" :key="i">
-          <img src="../../../img/p5.jpg" alt />
+        <div class="card" v-for='(item,i) of shopcars' :key="i">
+          <img :src="require('../../../img/products/'+item.img+'.jpg')" alt />
           <div class="card_detail">
-            <p>dfasdfasdfasd单方事故歌发送到发送到发发大水发生大发大法师的诗达噶啥地方干啥发的发达</p>
+            <p>{{item.detail}}</p>
             <div>
-              <span>￥79</span>
-              <span>x1</span>
+              <span>￥{{parseInt(item.price).toFixed(2)}}</span>
+              <span>X{{item.sum}}</span>
             </div>
           </div>
         </div>
@@ -42,25 +42,25 @@
 			<div class="sum">
 				<div class="sum_bar">
           <p>商品金额</p> 
-          <p>￥{{}}2454.00</p>
+          <p>￥{{allsum.toFixed(2)}}</p>
         </div>
 				<div class="sum_bar">
           <p>运费</p> 
-          <p>￥{{}}2454.00</p>
+          <p>￥00.00</p>
         </div>
 				<div class="sum_bar">
           <p>优惠</p> 
-          <p>-￥{{}}2454.00</p>
+          <p>￥00.00</p>
         </div>
 				<div class="sum_bar">
           <p>总金额： </p> 
-          <p>￥{{}}2454.00</p>
+          <p>￥{{parseInt(allsum).toFixed(2)}}</p>
         </div>               
 			</div>
 
     </div>
     <!-- 底部支付 -->
-    <van-submit-bar label="应付金额：" :price="3050" button-text="立即支付" @submit="onSubmit" />
+    <van-submit-bar label="应付金额：" :price="allsum*100" button-text="立即支付" @submit="onSubmit" />
   </div>
 </template>
 <style scoped>
@@ -214,15 +214,41 @@ position: relative;
   export default {
     data(){
       return{
-
+        shopcars:[],
       }
     },
+    props:['pid'],
     methods: {
       onSubmit(){
 
       },
       fanhui(){
         this.$router.go(-1)
+      },
+      		// 获取用户购物车数据
+    getshops(){
+      var url='shopcar/sett';
+      this.axios.get(url)
+      .then(res=>{
+        if(res.data.code==-0){//未登录
+          this.$toast("请先登录")
+        }else{
+          console.log(res.data.data,1);
+					this.shopcars=res.data.data;					
+        }
+      })
+    }
+    },
+    created() {
+      this.getshops();
+    },
+    computed: {
+      allsum(){
+        var allsum=0;
+        this.shopcars.forEach(value => {
+          allsum+=value.price*value.sum;
+        });
+        return allsum;
       }
     },
   }

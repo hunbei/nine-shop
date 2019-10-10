@@ -1,6 +1,11 @@
 <template>
 <!-- 地址管理界面 -->
 	<div>
+        <!-- 返回按钮 -->
+    <div class="detail_titel">
+      <i @click="fanhui"></i>
+      商品详情
+    </div>
 		<van-address-list
   v-model="chosenAddressId"
   :list="list"
@@ -33,6 +38,9 @@ export default {
     onAdd() {
       this.$toast('新增地址');
     },
+    fanhui(){
+      this.$router.go(-1)
+    },
 
     onEdit(item, index) {
       Toast('编辑地址:' + index);
@@ -41,3 +49,20 @@ export default {
 }
 
 </script>
+<style>
+.detail_titel {
+  height: 40px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+.detail_titel i {
+  height: 100%;
+  width: 30px;
+  background: url("../../../assets/return.png") no-repeat;
+  background-position: center center;
+}
+.detail_titel i:hover {
+  background: #9e9d9d;
+}
+</style>

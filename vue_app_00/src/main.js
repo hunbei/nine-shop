@@ -4,6 +4,7 @@ import router from './router'
 //引入第三方组件库mint-ui
 //完成引入所有组件
 import MintUI from "mint-ui"
+import store from './store'
 
 //但引入mint-ui样式文件
 import "mint-ui/lib/style.css"
@@ -43,12 +44,13 @@ import "./font/iconfont.css"
 // 引入axios
 import axios from 'axios'
 // 配置请求时保存session
-axios.defaults.withcredentials=true;
+axios.defaults.withCredentials=true;
 // 基础路径
 axios.defaults.baseURL="http://127.0.0.1:8080/"
 // 注册组件
 Vue.prototype.axios=axios;
 new Vue({
+  store,
   router,
   render: h => h(App)
 }).$mount('#app')

@@ -14,36 +14,52 @@
 		<!-- 商品导航 -->
 		<ul class="nav">
 			<li class="nav-item">
+				<router-link to="/classSearch/10">
 				<img src="../../img/products/p10.png" alt="">
-				蕾姆
+				榨汁机
+				</router-link>
 			</li>
 			<li class="nav-item">
+				<router-link to="/classSearch/20">
 				<img src="../../img/products/p20.png" alt="">
-				蕾姆
+				杯子
+				</router-link>
 			</li>
 			<li class="nav-item">
+				<router-link to="/classSearch/30">
 				<img src="../../img/products/p30.png" alt="">
-				蕾姆
+				食材
+				</router-link>
 			</li>
 			<li class="nav-item">
+				<router-link to="/classSearch/40">
 				<img src="../../img/products/p40.png" alt="">
-				蕾姆
+				饭煲锅具
+				</router-link>
 			</li>
 			<li class="nav-item">
+				<router-link to="/classSearch/50">
 				<img src="../../img/products/p50.png" alt="">
-				蕾姆
+				花样面煎
+				</router-link>
 			</li>
 			<li class="nav-item">
+				<router-link to="/classSearch/60">
 				<img src="../../img/products/p60.png" alt="">
-				蕾姆
+				烘焙
+				</router-link>
 			</li>
 			<li class="nav-item">
+				<router-link to="/classSearch/70">
 				<img src="../../img/products/p70.png" alt="">
-				蕾姆
+				净水器
+				</router-link>
 			</li>
 			<li class="nav-item">
+				<router-link to="/classSearch/80">
 				<img src="../../img/products/p80.png" alt="">
-				蕾姆
+				智能厨电
+				</router-link>
 			</li>
 
 		</ul>
@@ -99,10 +115,8 @@
 					</router-link>
 				</swiper-slide>
 					<swiper-slide>
-
 					<img src="" alt="" width="100">
-
-				</swiper-slide>																							
+				</swiper-slide>	
       </swiper>
 		</div>
 		<!-- 隔离带 -->
@@ -111,28 +125,43 @@
 			<div class="title">剁手灵感</div>	
       <swiper :options="swiperOption">
         <swiper-slide>
-					<router-link to="/detail">
-					<img src="../../img/01.jpg" alt="">
+					<router-link to="/detail/17">
+					<img src="../../img/products/s20.jpg" alt="">
 					</router-link>
-					
-					</swiper-slide>
-				<swiper-slide><img src="../../img/02.jpg" alt=""></swiper-slide>
-				<swiper-slide><img src="../../img/03.jpg" alt=""></swiper-slide>
-				<swiper-slide><img src="../../img/04.jpg" alt=""></swiper-slide>
-				<swiper-slide><img src="../../img/05.jpg" alt=""></swiper-slide>
-				<swiper-slide><img src="../../img/01.jpg" alt=""></swiper-slide>
-				<swiper-slide><img src="../../img/02.jpg" alt=""></swiper-slide>
-				<swiper-slide><img src="../../img/03.jpg" alt=""></swiper-slide>
-				<swiper-slide><img src="../../img/04.jpg" alt=""></swiper-slide>
-				<swiper-slide><img src="../../img/05.jpg" alt=""></swiper-slide>
+				</swiper-slide>
+				 <swiper-slide>
+					<router-link to="/detail/21">
+					<img src="../../img/products/s31.jpg" alt="">
+					</router-link>
+				</swiper-slide>
+				<swiper-slide>
+					<router-link to="/detail/8">
+					<img src="../../img/products/d14.jpg" alt="">
+					</router-link>
+				</swiper-slide>
+				<swiper-slide>
+					<router-link to="/detail/1">
+					<img src="../../img/products/s2.jpg" alt="">
+					</router-link>
+				</swiper-slide>
+				<swiper-slide>
+					<router-link to="/detail/31">
+					<img src="../../img/products/cd10.jpg" alt="">
+					</router-link>
+				</swiper-slide>
+				<swiper-slide>
+					<router-link to="/detail/61">
+					<img src="../../img/products/cd7.jpg" alt="">
+					</router-link>
+				</swiper-slide>
       </swiper>
 		</div>
 		<!-- 隔离带 -->
 		<div class="geli"></div>
 		<!-- 秒杀专区 -->
-		<products :products="products" :title="'秒杀专区'"></products>
-		<products :products="products" :title="'限量购专区'"></products>
-		<products :products="products" :title="'第二件半价'"></products>	
+		<products  :title="'秒杀专区'"></products>
+		<products :title="'限量购专区'"></products>
+		<products :title="'第二件半价'"></products>	
 					
   </div>
 </template>
@@ -163,12 +192,6 @@
 					}
 				},
 				products:[
-				{id:1,intro:"【现货速发】Apple/苹果 iPhone XR",img:"p0.jpg",price:99.00},
-				{id:2,intro:"【现货速发】Apple/苹果 iPhone XR",img:"p1.jpg",price:99.00},
-				{id:3,intro:"【现货速发】Apple/苹果 iPhone XR",img:"p2.jpg",price:99.00},
-				{id:4,intro:"【现货速发】Apple/苹果 iPhone XR",img:"p3.jpg",price:99.00},
-				{id:5,intro:"【现货速发】Apple/苹果 iPhone XR",img:"p5.jpg",price:99.00},
-				{id:6,intro:"【现货速发】Apple/苹果 iPhone XR",img:"p4.jpg",price:99.00},
 				],
 			}
 		},
@@ -184,12 +207,18 @@
 
 			}
 		},
+		watch: {
+			
+		},
 	}
 
 
 </script>
 
 <style>
+#home a{
+	color: #000;
+}
 /* 背景颜色 */
 .container{
 	background:#fff;

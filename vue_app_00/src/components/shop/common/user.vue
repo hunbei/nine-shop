@@ -2,7 +2,7 @@
 	<!-- 用户界面 -->
 	<div id="user">
 		<!-- 用户头像 -->
-		<div class="user">
+		<div class="user" @click="login">
 			<img class='user_img' src="../../../img/p5.jpg" alt="">
 			名字
 		</div>
@@ -38,6 +38,30 @@
 		</div>
 	</div>
 </template>
+<script>
+	export default{
+		data() {
+			return {
+				
+			}
+		},
+		methods: {
+			login(){
+				var uaccount=123456;
+				var upwd=123456;
+				var url='login';
+				var data={uaccount,upwd}
+				this.axios.get('login',{params:data})
+				.then(res=>{
+					if(res.data.code==1){
+						this.$toast('登录成功')
+					}
+				})
+			}
+		},
+	}
+
+</script>
 <style scoped>
 /* 用户头像 */
 	.user {

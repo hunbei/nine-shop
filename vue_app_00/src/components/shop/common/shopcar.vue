@@ -2,22 +2,22 @@
   <!-- 购物车页面 -->
   <div class="shopcar">
     <div class="header">
-      <span>共{{lists.length}}件商品</span>
+      <span>共{{shopcars.length}}件商品</span>
       <span @click="dels">管理</span>
     </div>
     <!-- 购物车清单 -->
 
     <!-- 单个购物单 -->
-    <div class="car_item" v-for="(item,i) of lists" :key="i" @touchstart="touchStart($event,i)" @touchend="touchEnd($event,i)" >
+    <div class="car_item" v-for="(item,i) of shopcars" :key="i" @touchstart="touchStart($event,i)" @touchend="touchEnd($event,i)" >
       <div class="car_select" :class="i==moveIndex && isdel?'car_selectdel':''">
         <input type="checkbox" @click="select" v-model="item.cb" :data-key='i'/>
       </div>
       <div class="item_right">
-       <img src="../../../img/p5.jpg" alt @click="goDetail"/>
+       <img :src="require('../../../img/products/'+item.img+'.jpg')"  @click="goDetail(item.pid)"/>
         <div class="item_intro">
-          <p>房间爱丽丝都是块级发送到立刻发牢骚的水立方看见爱上了</p>
+          <p>{{item.detail}}</p>
           <div>
-            <span>￥{{item.price}}</span>
+            <span>￥{{item.price.toFixed(2)}}</span>
             <div class="btn" @click="change($event,i)" >
               <i>-</i>
               <i >{{item.sum}}</i>
@@ -43,17 +43,19 @@
        <router-link to="/sett"> <button>结算{{sum}}</button></router-link>
       </div>
 			<!-- 删除多个 -->
-			<div class="sem_right" v-else ><button @click='delOrd(1)'>删除</button></div>
+			<div class="sem_right" v-else ><button @click='delOrd()'>删除</button></div>
     </div>
 		
   </div>
 </template>
 <style scoped>
 /* 背景颜色 */
-.shopcar {
-  padding: 10px;
+.shopcar{
+  height: 100%;
+  padding: 10px 10px 10px 10px;
   background-color: #f2f2f2;
-	padding-bottom: 120px;
+  background-clip: padding-box;
+  margin-bottom: 120px
 }
 /* 头部样式 */
 .shopcar .header {
@@ -70,6 +72,7 @@
 /* 购物单样式 */
 .shopcar .car_item {
   height: 100px;
+  margin-top: 2px;
   background-color: #fff;
   display: flex;
   align-items: center;
@@ -198,16 +201,17 @@
 }
 </style>
 <script>
-export default {
+export default { 
+  props:['shopcars'],
   data() {
     return {
       lists: [
-        {pid:1, sum: 2, cb: true, price: 338.0 },
-        {pid:1, sum: 1, cb: false, price: 3328.0 },
-        {pid:1, sum: 3, cb: false, price: 118.0 },
-        {pid:1, sum: 3, cb: false, price: 118.0 },
-        {pid:1, sum: 3, cb: false, price: 118.0 },
-        {pid:1, sum: 3, cb: false, price: 118.0 },
+        // {pid:1, sum: 2, cb: true, price: 338.0 },
+        // {pid:1, sum: 1, cb: false, price: 3328.0 },
+        // {pid:1, sum: 3, cb: false, price: 118.0 },
+        // {pid:1, sum: 3, cb: false, price: 118.0 },
+        // {pid:1, sum: 3, cb: false, price: 118.0 },
+        // {pid:1, sum: 3, cb: false, price: 118.0 },
       ],
 			selectAll: false,
 			clientX:0,
@@ -221,13 +225,13 @@ export default {
     //增删数量
     change(e,i) {
       if (e.target.innerHTML == "-") {
-        if (this.lists[i].sum == 1) {
+        if (this.shopcars[i].sum == 1) {
           this.$toast("减不动啦");
         } else {
-          this.lists[i].sum--;
+          this.shopcars[i].sum--;
         }
       } else if (e.target.innerHTML == "+") {
-        this.lists[i].sum++;
+        this.shopcars[i].sum++;
       }
     },
     // 选中购买
@@ -236,8 +240,8 @@ export default {
       //判断点击的是否是全选
       if (input.value=='全选') {
         // 所有订单状态和全选按钮一直
-        this.lists.forEach((value,i,arr)=>{
-          value.cb=!this.selectAll;
+        this.shopcars.forEach((value,i,arr)=>{
+          value.cb=!this.selectAll;//显示慢一步，所以取反
         })
       }else{//点击的是单个选中按钮
         if (input.checked == false) {
@@ -246,9 +250,9 @@ export default {
 				// 获得当前选中的订单序列
 				var key=input.dataset.key;
 				// 修改data数据中对应的选中状态
-				this.lists[key].cb=input.checked;
+				this.shopcars[key].cb=input.checked;
 				// 判断全部订单是否都选中了
-				var bool=this.lists.every((value,i,arr)=>{
+				var bool=this.shopcars.every((value,i,arr)=>{
 					return value.cb==true;
 				})
 				this.selectAll=bool;				
@@ -265,18 +269,55 @@ export default {
 		delOrd(i){
 			if (i!=undefined) {
 				// 获得对应订单商品的数据
-				var order=this.lists[i];
-				console.log(i);
-				// 向服务器端发送请求删除数据
-
+        var order=this.shopcars[i];
+        var sid={sid:order.sid}
+        // 向服务器端发送请求删除数据
+        var url='shopcar/delete';
+        this.axios.get(url,{params:sid})
+        .then(res=>{
+          if(res.data.code==1){
+            // 删除成功
+            this.$toast('删除成功');
+            // 重新获取数据
+            this.getshops();
+          }
+        })
 				// 重新加载页面
 			}else{
 				// 如果没有传入参数说明是删除多项
-				console.log('删除多项')
-			}
-
-				
-		},
+				// 获得对应订单商品的数据
+        var sids=this.shopcars.map(function(value,i,arr){
+          if (value.cb) {
+            return value.sid;
+          }
+        })
+        var sid={sid:sids}
+				console.log('sid:'+sids);
+        // 向服务器端发送请求删除数据
+        var url='shopcar/delete';
+        this.axios.get(url,{params:sid})
+        .then(res=>{
+          if(res.data.code==1){
+            // 删除成功
+            this.$toast('删除成功');
+            // 重新获取数据
+            this.getshops();
+          }
+        })
+			}		
+    },
+    		// 获取用户购物车
+    getshops(){
+      var url='shopcar';
+      this.axios.get(url)
+      .then(res=>{
+        if(res.data.code==-1){//未登录
+          this.$toast("请先登录")
+        }else{
+          this.shopcars=res.data.data;
+        }
+      })
+    },
 		// 左滑订单显示删除按钮
 		touchStart(e,i){
 			// 获取滑动的位置
@@ -300,16 +341,18 @@ export default {
 			}
     },
     //跳转详情页面
-    goDetail(){
-      this.$router.push('/detail')
-    }
-
-	},
+    goDetail(pid){
+      this.$router.push('/detail/'+pid)
+    },
+  },
+  created() {
+    // this.getshops();
+  },
 	computed: {
 		// 选中商品数量
 		sum(){
 			var sum=0;
-			for (const i of this.lists) {
+			for (const i of this.shopcars) {
 				if (i.cb==true) {
 					sum++;
 				}
@@ -317,7 +360,7 @@ export default {
 			return sum;
 		},
 		total(){
-		 return this.lists.reduce((prev,elem,i,arr)=>{
+		 return this.shopcars.reduce((prev,elem,i,arr)=>{
 			//  选中的才计算			 
 				 if (elem.cb) {
 					prev+=elem.price*elem.sum
