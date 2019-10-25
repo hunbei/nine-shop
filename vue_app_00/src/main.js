@@ -17,33 +17,18 @@ import 'swiper/dist/css/swiper.css'
 //注册swiper
 Vue.use(swiper, /* { default global options } */)
 // 使用vant商品导航组件
-import {
-  GoodsAction,
-  GoodsActionIcon,
-  GoodsActionButton,
-  SubmitBar,
-  CouponCell,
-   CouponList,
-   Search,AddressList,
-} from 'vant';
+import Vant from 'vant';
 import 'vant/lib/index.css';
 
-Vue
-  .use(GoodsAction)
-  .use(GoodsActionIcon)
-  .use(GoodsActionButton)
-  .use(SubmitBar)
-  .use(CouponCell)
-  .use(Search)
-  .use(CouponList)
-  .use(AddressList);
+Vue.use(Vant);
+
 
 import './lib/mui/css/icons-extra.css'
 import "./font/iconfont.css"
 // Vue.config.productionTip = false;
 // 引入axios
 import axios from 'axios'
-// 配置请求时保存session
+// 配置请求时保存session,发送自动携带
 axios.defaults.withCredentials=true;
 // 基础路径
 axios.defaults.baseURL="http://127.0.0.1:8080/"
